@@ -1,0 +1,51 @@
+Starting derby:
+$HIVE_HOME/bin/schematool -dbType derby -initSchema
+
+Launch HIVE:
+(before launch make sure hdfs is running)
+hive
+
+Quit HIVE:
+quit;
+exit;
+
+
+HIVE commands:
+>hive 
+
+show databases
+show tables
+
+use default
+use new
+
+create database new
+
+create new table - managed or external:
+create table emp(id int)
+create external table emp_ext(id int)
+
+check db contents in hdfs:
+hdfs dfs -ls /user/hive/warehouse/new.db/
+
+check table contents in hdfs:
+hdfs dfs -ls /user/hive/warehouse/new.db/iris_buck
+
+load data into partitioned table:
+hive> insert into iris_part partition(Species)
+    > select * from iris_managed;
+
+create partitioned table:
+hive> create table iris_part(Id int, SepalLenghtCm float, SepalWidhtCm float, PetalLengthCm float, PetalWidthCm float)
+    > partitioned by (Species string)
+    > row format delimited
+    > fields terminated by ',';
+hive> set hive.exec.dynamic.partition=True;
+hive> set hive.exec.dynamic.partition.mode=nonstrict;
+
+create bucketed table:
+hive> create table iris_buck(Id int, SepalLenghtCm float, SepalWidhtCm float, PetalLengthCm float, PetalWidthCm float, Species string)
+    > clustered by (Species) into 3 buckets
+    > row format delimited
+    > fields terminated by ',';
+hive> set hive.enforce.bucketing=True;

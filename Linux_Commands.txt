@@ -1,0 +1,48 @@
+1/ Working directory
+pwd
+
+2/ List of all files
+ls
+
+3/ Details for the list of all files
+ls -lrt
+
+4/ Create a new directory 
+mkdir DenisNewDir
+
+5/ Go to another directory
+cd DenisNewDir
+
+6/ Go one directory back
+cd ..
+
+7/ Change permissions to the highest level
+chmod 777 DenisNewDir
+
+8/ Clear terminal
+clear
+
+9/ Create new file
+cat > file.txt
+ctrl+d - exit the file
+
+10/ Print the content of a new file
+cat file.txt
+
+11/ Print the head of the file
+head file.txt
+
+12/ Print the tail of the file
+tail file.txt
+
+13/ Copy the file to the folder
+cp file.txt /home/afande/Documents
+
+14/ Move the file Ctrl+X, Ctrl+C
+mv file.txt /home/afande
+
+15/ Remove the file
+rm file.txt
+
+16/ Remove the directory
+rmdir Second

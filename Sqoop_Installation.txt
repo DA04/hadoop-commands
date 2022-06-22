@@ -1,0 +1,31 @@
+wget http://archive.apache.org/dist/sqoop/1.4.7/sqoop-1.4.7.tar.gz
+tar -xvf sqoop-1.4.7.tar.gz
+
+nano ~/.bashrc
+
+#Sqoop Realted Options
+export SQOOP_HOME=/home/hdoop/sqoop-1.4.7
+export PATH=$PATH:$SQOOP_HOME/bin
+
+source ~/.bashrc
+
+cd $SCOOP_HOME/conf
+mv sqoop-env-template.sh sqoop-env.sh
+
+nano sqoop-env.sh
+#Set path to where bin/hadoop is available
+export HADOOP_COMMON_HOME=/home/hdoop/hadoop-3.2.3
+
+#Set path to where hadoop-*-core.jar is available
+export HADOOP_MAPRED_HOME=/home/hdoop/hadoop-3.2.3
+
+wget http://ftp.ntu.edu.tw/MySQL/Downloads/Connector-J/mysql-connector-java-8.0.29.tar.gz
+mv mysql-connector-java-8.0.29 /$SQOOP_HOME/lib
+
+mv /c/Users/79653/Documents/Hadoop/sqoop-1.4.7.jar /home/hdoop/sqoop-1.4.7/
+
+sqoop version
+sqoop help
+sqoop list-databases --connect
+
+

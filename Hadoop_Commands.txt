@@ -1,0 +1,78 @@
+switch to hadoop user
+su - hdoop
+password: afande
+
+-------------
+Hadoop Start:
+-----------------------
+sudo service ssh start
+start-dfs.sh
+start-yarn.sh
+jps
+-----------------------
+
+
+How to fix: Connection refused by port 22 Debian/Ubuntu
+https://linuxhint.com/fix_connection_refused_ubuntu/
+sudo service ssh start
+
+For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+https://stackoverflow.com/questions/28661285/hadoop-cluster-setup-java-net-connectexception-connection-refused
+
+# check version
+hadoop version
+
+# create a new directory:
+hdfs dfs -mkdir /NewDir
+
+# change permission on the directory:
+hdfs dfs -chmod 777 /NewDir
+
+# create a new file:
+hdfs dfs -touch /NewDir/newfile.txt
+
+# check the file in the directory:
+hdfs dfs -ls /NewDir
+
+# see the file content:hdfs
+hdfs dfs -cat /NewDir/newfile.txt
+hdfs dfs -cat /NewDir2/Iris.csv | head -n 10
+hdfs dfs -cat /NewDir2/Iris.csv | tail -n 10
+hdfs dfs -tail /NewDir2/Iris.csv
+hdfs dfs -text /NewDir2/flightlist_20190101_20190131.csv.gz | head -n 10
+
+# copy file from hadoop to local:
+hdfs dfs -get /NewDir/newfile.txt /home/afande/
+
+# copy file from local to hadoop:
+hdfs dfs -put /home/afande/flightlist_20190101_20190131.csv.gz /NewDir2
+hdfs dfs -put /c/Users/79653/Documents/Hadoop/data/Iris.csv /NewDir2
+
+# copy file between hadoop folders:
+hdfs dfs -cp /NewDir/newfile.txt /NewDir2
+
+# copy large files
+hdfs distcp /old_dir/file /new_dir/
+
+# hadoop admin command:
+hdfs dfsadmin -report
+hdfs dfsadmin -safemode
+
+# check filesystem:
+hdfs fsck /NewDir
+
+# disk usage for the directory:
+hdfs dfs -du /NewDir
+hdfs dfs -du -h /NewDir2
+
+# change folder/file name:
+mv /home/user/oldname /home/user/newname
+
+# delete file
+hdfs dfs -rm /dir/file
+hdfs dfs -rm -skipTrash /dir/file
+
+# delete folder
+hdfs dfs -rm -r /dir
+
+
